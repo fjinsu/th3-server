@@ -1,0 +1,55 @@
+---
+- name: Copy new version of script to server
+  copy: 
+    dest: /home/ec2-user/
+    src: /home/ec2-user/th3-server.py
+  delegate_to:  "{{ item['private_ip'] }}"
+  with_items: "{{ new_ec2s.instances }}"
+
+
+
+
+#  ok: [localhost] => {
+#    "new_ec2s": {
+#        "changed": true,
+#        "failed": false,
+#        "instance_ids": [
+#            "i-040dac8ed0f30e7ec"
+#        ],
+#        "instances": [
+#            {
+#                "ami_launch_index": "0",
+#                "architecture": "x86_64",
+#                "block_device_mapping": {},
+#                "dns_name": "",
+#                "ebs_optimized": false,
+#                "groups": {
+#                    "sg-0c20cf20fe448c70a": "translate_web_api"
+#                },
+#                "hypervisor": "xen",
+#                "id": "i-040dac8ed0f30e7ec",
+#                "image_id": "ami-0fbae17fa209835d1",
+#                "instance_type": "t2.micro",
+#                "kernel": null,
+#                "key_name": "blizz",
+#                "launch_time": "2021-03-08T05:27:13.000Z",
+#                "placement": "us-west-1b",
+#                "private_dns_name": "ip-172-31-24-74.us-west-1.compute.internal",
+#                "private_ip": "172.31.24.74",
+#                "public_dns_name": "",
+#                "public_ip": null,
+#                "ramdisk": null,
+#                "region": "us-west-1",
+#                "root_device_name": "/dev/xvda",
+#                "root_device_type": "ebs",
+#                "state": "pending",
+#                "state_code": 0,
+#                "tags": {},
+#                "tenancy": "default",
+#                "virtualization_type": "hvm"
+#            }
+#        ],
+#        "tagged_instances": []
+#    }
+#}
+#
