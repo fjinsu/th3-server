@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: no
+  become: False
+  pre_tasks:
+    - name: Get latest th3_server.py from S3
+      shell: |
+        cd /home/ec2-user/th3_app
+        rm -rf th3*
+        wget http://blizzard-translate-api.s3.amazonaws.com/th3-server.py
+  roles:
+    - role: translate_provision_deploy_ec2 
+      tag: deploy
+    - role: translate_bg_swap
+      tag: deploy

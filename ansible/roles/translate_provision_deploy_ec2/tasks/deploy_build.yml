@@ -1,13 +1,16 @@
 ---
-- name: Copy new version of script to server
-  copy: 
-    dest: /home/ec2-user/
-    src: /home/ec2-user/th3-server.py
+- name: Get script from S3
+  copy:
+    src: /home/ec2-user/th3_app/th3-server.py
+    dest: /home/ec2-user/th3_app
   delegate_to:  "{{ item['private_ip'] }}"
   with_items: "{{ new_ec2s.instances }}"
 
-
-
+- name: Start script
+  shell: |
+          cd /home/ec2-user/th3_app
+          nohup python3 th3-server.py &
+          exit
 
 #  ok: [localhost] => {
 #    "new_ec2s": {

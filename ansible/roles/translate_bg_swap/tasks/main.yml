@@ -1,0 +1,5 @@
+---
+- debug:
+    var: new_ec2s
+#- name: Confirm that service is up and running
+  

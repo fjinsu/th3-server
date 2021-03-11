@@ -1,7 +1,0 @@
----
-- hosts: localhost
-  gather_facts: no
-  become: False
-  roles:
-    - translate_provision_deploy_ec2 
-    #- translate_bg_swap
