@@ -28,6 +28,7 @@ Application Elastic Load Balancer(ELB)
 The 'tags' parameter will depend on whether you wish you to deploy a new build or rollback to an old build
 
 ```ansible-playbook translate-api-deployment.yml --ask-vault-pass --tags deploy/build
+
 ```
 
 # Pipeline deployment process
