@@ -1,13 +1,12 @@
 # EC2 deployment pipeline
 
 A process for deploying the th3-server.py script using CI/ID methodology.
-
 The primary orchestrator in this example is Ansible leveraging AWS as a platform.
 
 ## Ansible prerequisites
 
 Ansible server running version 2.9.* to run the playbook
-Ansible Vault credentials of AWS access credentials 
+Ansible Vault credentials of AWS access credentials
 Boto3 for Ansible AWS modules 
 
 ## AWS prerequisites
