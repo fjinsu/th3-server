@@ -35,7 +35,8 @@ Failures will induce the whole job to fail.
 A more ideal solution would be to have Ansible have a separate job for each newly provisioned EC2 instance instead of a clumping them as a group.  
 This would allow successful builds to continue even if there are broken builds during the process.
 
-```1. Grab the latest version of the script from an S3 bucket
+```
+1. Grab the latest version of the script from an S3 bucket
 2. Provision new EC2 servers
 3. Deploy script and start script on newly provisioned EC2 servers
 4. Confirm application on EC2 servers are up and running
@@ -54,7 +55,8 @@ A more ideal solution would be to build the instances with tags specifying their
 Then a user could simply supply the application and the build version to roll back to and Ansible will look for instances that satisfy these requirement.  
 Also, like the deployment process, failure will induce the whole job to fail.
 
-```1. User provides a list of instances to roll back to
+```
+1. User provides a list of instances to roll back to
 2. Start application on instances provided
   a. Confirm services are running and healthy
   b. If not, rollback fails
