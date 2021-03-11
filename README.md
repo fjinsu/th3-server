@@ -11,9 +11,9 @@ Boto3 for Ansible AWS modules
 
 ## AWS prerequisites
 AWS account  
-AWS access credentials
-S3 bucket to hold latest version of th3-server.py
-Application Elastic Load Balancer(ELB)
+AWS access credentials  
+S3 bucket to hold latest version of th3-server.py  
+Application Elastic Load Balancer(ELB)  
 
 ## Instructions for setting up AWS prerequisites
 [AWS Services](https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do)  
@@ -21,7 +21,7 @@ Application Elastic Load Balancer(ELB)
 
 ## Instructions for setting Ansible prerequisites
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)  
-[Ansible Vault credentials](https://docs.ansible.com/ansible/latest/user_guide/vault.html)
+[Ansible Vault credentials](https://docs.ansible.com/ansible/latest/user_guide/vault.html)  
 [Boto3](https://pypi.org/project/boto3/)
 
 # Pipeline deployment process
@@ -40,7 +40,7 @@ Application Elastic Load Balancer(ELB)
 
 # Pipeline rollback process
 At the moment, the rollback would depend on a list of EC2 instance IDs that would be provided by the user.  
-A more ideal solution would to build the instances with tags specifying their application and build version.
+A more ideal solution would to build the instances with tags specifying their application and build version.  
 Then a user would supply the application and the build version to roll back to and Ansible will look for instances that satisfy these requirements.
 
 ```1. User provides a list of instances to roll back
