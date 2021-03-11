@@ -1,0 +1,56 @@
+# EC2 deployment pipeline
+A process for deploying the th3-server.py script using CI/ID methodology.
+The primary orchestrator in this example is Ansible leveraging AWS as a platform.
+
+## Ansible prerequisites
+
+Ansible server running version 2.9.* to run the playbook
+Ansible Vault credentials of AWS access credentials 
+Boto3 for Ansible AWS modules 
+
+## AWS prerequisites
+AWS account
+AWS access credentials
+S3 bucket to hold latest version of th3-server.py
+Application Elastic Load Balancer(ELB)
+
+## Instructions for setting up AWS prerequisites
+```[AWS Services](https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do)
+[AWS Access Credentials](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/getting-your-credentials.html)
+```
+## Instructions for setting Ansible prerequisites
+```[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+[Ansible Vault credentials](https://docs.ansible.com/ansible/latest/user_guide/vault.html)
+[Boto3](https://pypi.org/project/boto3/)
+```
+
+# Pipeline deployment process
+
+```1. Grab latest version of script of S3 bucket
+2. Provision new EC2 servers
+3. Deploy and script to newly provisioned EC2 servers
+4. Confirm newly provisioned EC2 servers are up and running
+  a. If not, restart the script and test
+  b. If still failing, fail the deployment
+5. Register newly provisioned EC2 instances to ELB target group to start receiving traffic
+  a. Wait for load balancing health checks to confirm instances are healthy
+  b. If unhealthy, deregister, and fail deployment
+6. Deregister old EC2 instances from ELB target group
+```
+
+# Pipeline rollback process
+At the moment, the rollback would depend on a list of EC2 instance IDs that would be provided by the user.
+A more ideal solution would to build the instances with tags specifying their application and build version.
+Then a user would supply the application and the build version to roll back to and Ansible will look for instances that satisfy these requirements.
+
+```1. User provides a list of instances to roll back
+2. Start application on instances provided
+  a. Confirm services are running and healthy
+  b. If not, rollback fails
+3. Register rollback instances to ELB target group
+  a. Wait for load balancing health checks to confirm instances are healthy
+  b. If unhealthy, deregister, and fail rollback
+4. Deregister broken EC2 instances from ELB target group
+
+## Authors
+Francis Kim
