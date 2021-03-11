@@ -32,7 +32,8 @@ The 'tags' parameter will depend on whether you wish you to deploy a new build o
 # Pipeline deployment process
 ### Notes
 Failures will induce the whole job to fail.  
-A more ideal solution would be to have Ansible handle each instance as it's own entity instead of a cluster so successful builds can continue  
+A more ideal solution would be to have Ansible have a separate job for each newly provisioned EC2 instance instead of a clumping them as a group.  
+This would allow successful builds to continue even if there are broken builds during the process.
 
 ```1. Grab the latest version of the script from an S3 bucket
 2. Provision new EC2 servers
