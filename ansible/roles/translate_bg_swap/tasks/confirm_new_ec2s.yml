@@ -1,0 +1,25 @@
+---
+- name: Start service if service is down
+  block:
+    - name: Check service is up and running
+    uri:
+        url: http://{{ item['private_ip'] }}:8080/version
+        return_content: yes
+    register: test_results
+    with_items: "{{ new_ec2s.instances }}"
+
+  rescue:
+    - name: Start script
+    shell: |
+        cd /home/ec2-user/th3_app
+        nohup python3 th3-server.py &
+        exit
+    - name: Check service is up and running
+    uri:
+        url: http://{{ item['private_ip'] }}:8080/version
+        return_content: yes
+    register: test_results
+    until: test_results.status == 'Success'
+    retries: 10
+    delay: 5
+    with_items: "{{ new_ec2s.instances }}"

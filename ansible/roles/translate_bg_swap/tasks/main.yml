@@ -1,5 +1,4 @@
 ---
-- debug:
-    var: new_ec2s
-#- name: Confirm that service is up and running
-  
+- import_tasks: confirm_new_ec2s.yml
+- import_tasks: swap_ec2s.yml
+

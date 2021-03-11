@@ -13,3 +13,5 @@
       tag: deploy
     - role: translate_bg_swap
       tag: deploy
+    - role: translate_rollback_build
+      tag: rollback

@@ -1,0 +1,29 @@
+---
+- name: Get broken ec2 instances from target group
+  elb_target_group_info:
+    names: th3-api
+  register: broken_ec2s
+
+- name: Join new ec2 instances to target group
+  elb_target:
+    target_group_name: th3-api
+    target_id: "{{ item}}"
+    state: present
+  with_items: "{{ instances_list }}"
+
+#wait till elb confirms health check is up
+- name: Wait to see all ELB target group passes all health checks
+  elb_target_group_info:
+    names: th3-api
+    collect_targets_health: yes
+  register: target_group_health
+  until: target_group_health.targetgroups[0] == 'Healthly'
+  retries: 10
+  delay: 5
+  
+#pull old ec2 from target group
+- name: Remove old ec2 instances from target group
+  elb_target:
+    target_group_name: th3-api
+    target_id: "{{ item['id'] }}"
+  with_items: "{{ broken_ec2s.targetgroups }}"

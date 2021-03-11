@@ -1,0 +1,4 @@
+---
+#variable {{ instance list }} will be provided by user
+- import_tasks: confirm_old_ec2s.yml
+- import_tasks: swap_ec2s.yml

@@ -12,13 +12,6 @@
     instance_type: t2.micro
     count: 1
   register: new_ec2s
-#- name: Wait until EC2 instance status is up and running
-#  ec2_instance_info:
-#    aws_access_key: "{{ AWS_ACCESS_KEY }}"
-#    aws_secret_key: "{{ EC2_SECRET_KEY }}"
-#    assign_public_ip: no
-#    instance_id: "{{ item }}"
-#  with_items: "{{ new_ec2s.instance_ids }}"
 
 - name: Wait until EC2 is available
   wait_for_connection:
