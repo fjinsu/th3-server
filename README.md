@@ -1,6 +1,6 @@
 # EC2 deployment pipeline
 
-A process for deploying the th3-server.py script using CI/ID philosophy.  
+A process for deploying the th3-server.py script using CI/CD philosophy.  
 The primary orchestrator in this example is Ansible leveraging AWS as a platform.
 
 ## Ansible prerequisites

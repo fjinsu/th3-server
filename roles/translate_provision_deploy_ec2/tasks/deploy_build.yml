@@ -1,5 +1,5 @@
 ---
-- name: Get script from S3
+- name: Copy script from Ansible host
   copy:
     src: /home/ec2-user/th3_app/th3-server.py
     dest: /home/ec2-user/th3_app

@@ -10,8 +10,8 @@
         wget http://blizzard-translate-api.s3.amazonaws.com/th3-server.py
   roles:
     - role: translate_provision_deploy_ec2 
-      tag: deploy
+      tags: deploy
     - role: translate_bg_swap
-      tag: deploy
+      tags: deploy
     - role: translate_rollback_build
-      tag: rollback
+      tags: rollback
