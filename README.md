@@ -30,10 +30,6 @@ The 'tags' parameter will depend on whether you wish you to deploy a new build o
 ```ansible-playbook translate-api-deployment.yml --ask-vault-pass --tags deploy/build```
 
 # Pipeline deployment process
-### Notes
-Failures will induce the whole job to fail.  
-A more ideal solution would be to have Ansible have a separate job for each newly provisioned EC2 instance instead of a clumping them as a group.  
-This would allow successful builds to continue even if there are broken builds during the process.
 
 ```
 1. Grab the latest version of the script from an S3 bucket
@@ -49,11 +45,6 @@ This would allow successful builds to continue even if there are broken builds d
 ```
 
 # Pipeline rollback process
-### Notes
-At the moment, the rollback would depend on a list of EC2 instance IDs that would be provided by the user.  
-A more ideal solution would be to build the instances with tags specifying their application and build version.  
-Then a user could simply supply the application and the build version to roll back to and Ansible will look for instances that satisfy these requirement.  
-Also, like the deployment process, failure will induce the whole job to fail.
 
 ```
 1. User provides a list of instances to roll back to
@@ -65,6 +56,15 @@ Also, like the deployment process, failure will induce the whole job to fail.
   b. If unhealthy, deregister, and fail rollback
 4. Deregister broken EC2 instances from ELB target group
 ```
+
+### Notes
+At the moment, the rollback would depend on a list of EC2 instance IDs that would be provided by the user.  
+A more ideal solution would be to build the instances with tags specifying their application and build version.  
+Then a user could simply supply the application and the build version to roll back to and Ansible will look for instances that satisfy these requirement.  
+
+Failures induce the whole job to fail.  
+A more ideal solution would be to have Ansible have a separate job for each EC2 instance instead of a clumping them as a group.  
+This would allow successful builds to continue even if there are broken builds during the process.
 
 ## Authors
 Francis Kim
