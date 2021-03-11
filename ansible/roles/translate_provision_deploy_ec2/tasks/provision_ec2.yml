@@ -1,9 +1,6 @@
 ---
 - name: Deploy new EC2 instance
   ec2:
-    aws_access_key: "{{ AWS_ACCESS_KEY }}"
-    aws_secret_key: "{{ EC2_SECRET_KEY }}"
-    assign_public_ip: no
     group_id: sg-0c20cf20fe448c70a 
     vpc_subnet_id: subnet-1ba27a7d 
     region: us-west-1
