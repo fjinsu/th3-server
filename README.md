@@ -1,5 +1,7 @@
 # EC2 deployment pipeline
+
 A process for deploying the th3-server.py script using CI/ID methodology.
+
 The primary orchestrator in this example is Ansible leveraging AWS as a platform.
 
 ## Ansible prerequisites
@@ -15,14 +17,13 @@ S3 bucket to hold latest version of th3-server.py
 Application Elastic Load Balancer(ELB)
 
 ## Instructions for setting up AWS prerequisites
-```[AWS Services](https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do)
+[AWS Services](https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do)
 [AWS Access Credentials](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/getting-your-credentials.html)
-```
+
 ## Instructions for setting Ansible prerequisites
-```[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 [Ansible Vault credentials](https://docs.ansible.com/ansible/latest/user_guide/vault.html)
 [Boto3](https://pypi.org/project/boto3/)
-```
 
 # Pipeline deployment process
 
@@ -51,6 +52,7 @@ Then a user would supply the application and the build version to roll back to a
   a. Wait for load balancing health checks to confirm instances are healthy
   b. If unhealthy, deregister, and fail rollback
 4. Deregister broken EC2 instances from ELB target group
+```
 
 ## Authors
 Francis Kim
