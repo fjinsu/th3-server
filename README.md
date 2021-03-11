@@ -27,9 +27,7 @@ Application Elastic Load Balancer(ELB)
 # Command to run deployment process
 The 'tags' parameter will depend on whether you wish you to deploy a new build or rollback to an old build
 
-```ansible-playbook translate-api-deployment.yml --ask-vault-pass --tags deploy/build
-
-```
+```ansible-playbook translate-api-deployment.yml --ask-vault-pass --tags deploy/build```
 
 # Pipeline deployment process
 ### Notes
